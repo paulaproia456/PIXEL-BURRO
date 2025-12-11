@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compra Aprovada! 🎉</title>
+
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
+    n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'Pixel Facebook aqui');
+    fbq('track', 'PageView');
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .success-icon {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      animation: bounce 1s ease-in-out;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    }
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .value-display {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #FFD700;
+      margin: 1.5rem 0;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    .message {
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      line-height: 1.6;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+    .cta-button {
+      background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+      color: #1a1a1a;
+      border: none;
+      padding: 20px 50px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(255,215,0,0.5);
+      text-decoration: none;
+      display: inline-block;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+    .cta-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(255,215,0,0.7);
+    }
+    .cta-button:active {
+      transform: translateY(-2px);
+    }
+    .bonus-badge {
+      display: inline-block;
+      background: rgba(255,215,0,0.2);
+      color: #FFD700;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      border: 2px solid rgba(255,215,0,0.4);
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+    .checkmarks {
+      text-align: left;
+      margin: 2rem auto 2rem auto;
+      max-width: 350px;
+      animation: fadeInUp 0.8s ease-out 0.35s both;
+    }
+    .checkmark-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+    .checkmark-icon {
+      font-size: 1.5rem;
+      margin-right: 12px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    
+    /* Animações */
+    @keyframes bounce { 
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 
+      40% { transform: translateY(-20px); } 
+      60% { transform: translateY(-10px); } 
+    }
+    @keyframes fadeInUp { 
+      from { opacity: 0; transform: translateY(30px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+    @keyframes pulse { 
+      0%, 100% { transform: scale(1); } 
+      50% { transform: scale(1.05); } 
+    }
+    
+    /* Partículas de fundo */
+    .particles { 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      pointer-events: none; 
+      z-index: -1; 
+    }
+    .particle {
+      position: absolute;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float { 
+      0%, 100% { transform: translateY(0px) rotate(0deg); } 
+      50% { transform: translateY(-20px) rotate(180deg); } 
+    }
+  </style>
+
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  
+  <div class="container">
+    <div class="success-icon">🎉</div>
+    
+    <h1 class="title">Pagamento Aprovado!</h1>
+    
+    <div class="value-display" id="valueDisplay">R$ 0,00</div>
+    
+    <div class="checkmarks">
+      <div class="checkmark-item">
+        <span class="checkmark-icon">✅</span>
+        <span>Pagamento confirmado</span>
+      </div>
+      <div class="checkmark-item">
+        <span class="checkmark-icon">✅</span>
+        <span>Acesso liberado</span>
+      </div>
+      <div class="checkmark-item">
+        <span class="checkmark-icon">✅</span>
+        <span>Conteúdo exclusivo disponível</span>
+      </div>
+    </div>
+    
+    <p class="message">
+      Clique no botão abaixo para entrar no grupo VIP e acessar todo o conteúdo exclusivo!
+    </p>
+    
+    <a href="#" class="cta-button" id="ctaButton">
+      🔥 Entrar no Grupo VIP Agora
+    </a>
+    
+    <div class="bonus-badge">🎁 Bônus Exclusivos Inclusos</div>
+  </div>
+
+  <!-- Config ANTES do script principal -->
+  <script src="./config.js"></script>
+
+  <script>
+    // ========== DETECTA GRUPO VIP ==========
+    const params = new URLSearchParams(window.location.search);
+    const campaign = params.get('utm_campaign') || 'bia';
+    const produto = PRODUTOS[campaign] || PRODUTOS['bia'];
+    const GRUPO_VIP_URL = produto.grupo_vip;
+    
+    console.log('🎯 Produto:', produto.nome);
+    console.log('🏆 Grupo VIP:', GRUPO_VIP_URL);
+    
+    // Muda cores do gradiente
+    if (produto) {
+      document.body.style.background = 
+        `linear-gradient(135deg, ${produto.cor_primaria} 0%, ${produto.cor_secundaria} 100%)`;
+    }
+    
+    // ========== CAPTURA FBC/FBP ==========
+    function getFacebookBrowserId() {
+      const cookies = document.cookie.split(';');
+      let fbp = null;
+      let fbc = null;
+      
+      // Tenta do cookie
+      cookies.forEach(cookie => {
+        const [name, value] = cookie.trim().split('=');
+        if (name === '_fbp') fbp = value;
+        if (name === '_fbc') fbc = value;
+      });
+      
+      // Se não tem FBC, tenta localStorage
+      if (!fbc) {
+        const fbcLocal = localStorage.getItem('_fbc');
+        if (fbcLocal) {
+          fbc = fbcLocal;
+          console.log('✅ FBC recuperado do localStorage:', fbc);
+        } else {
+          // Tenta do fbclid na URL
+          const fbclid = params.get('fbclid');
+          if (fbclid) {
+            fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+            document.cookie = `_fbc=${fbc}; path=/; max-age=7776000; SameSite=Lax`;
+            localStorage.setItem('_fbc', fbc);
+            console.log('✅ FBC criado do fbclid:', fbc);
+          } else {
+            console.error('❌ FBC NÃO ENCONTRADO - isso vai impactar sua nota!');
+          }
+        }
+      } else {
+        console.log('✅ FBC encontrado no cookie:', fbc);
+      }
+      
+      // FBP
+      if (!fbp) {
+        const fbpLocal = localStorage.getItem('_fbp');
+        if (fbpLocal) {
+          fbp = fbpLocal;
+          console.log('✅ FBP recuperado do localStorage:', fbp);
+        } else {
+          fbp = 'fb.1.' + Date.now() + '.' + Math.random().toString(36).substr(2, 9);
+          document.cookie = `_fbp=${fbp}; path=/; max-age=7776000; SameSite=Lax`;
+          localStorage.setItem('_fbp', fbp);
+          console.log('✅ FBP criado:', fbp);
+        }
+      } else {
+        console.log('✅ FBP encontrado no cookie:', fbp);
+      }
+      
+      // Status
+      console.log('📊 Facebook IDs Status:');
+      console.log('  - FBP:', fbp ? '✅ OK' : '❌ FALTANDO');
+      console.log('  - FBC:', fbc ? '✅ OK' : '❌ FALTANDO (PROBLEMA!)');
+      
+      if (!fbc) {
+        console.error('⚠️⚠️⚠️ FBC FALTANDO - SUA NOTA VAI FICAR BAIXA! ⚠️⚠️⚠️');
+      }
+      
+      return { fbp, fbc };
+    }
+    
+    // ========== FUNÇÕES ==========
+    function formatCurrency(value) {
+      return 'R$ ' + parseFloat(value).toFixed(2).replace('.', ',');
+    }
+    
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.width = Math.random() * 10 + 5 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
+    function sendPurchaseEvent(value) {
+      const eventId = 'purchase_' + Date.now() + '_' + Math.floor(Math.random()*100000);
+      
+      console.log('💰 Enviando Purchase');
+      console.log('  - Valor:', value);
+      console.log('  - Produto:', produto.nome);
+      console.log('  - Campanha:', campaign);
+      console.log('  - Event ID:', eventId);
+      console.log('  - Grupo VIP:', GRUPO_VIP_URL);
+      
+      // Captura IDs do Facebook
+      const facebookIds = getFacebookBrowserId();
+      
+      // 1. Envia Purchase via Pixel (Browser-Side)
+      try {
+        fbq('track', 'Purchase', {
+          value: parseFloat(value),
+          currency: 'BRL',
+          content_name: produto.nome,
+          content_category: campaign
+        }, {
+          eventID: eventId
+        });
+        
+        console.log('✅ Purchase Pixel enviado');
+        console.log('  - FBP:', facebookIds.fbp ? '✓' : '✗');
+        console.log('  - FBC:', facebookIds.fbc ? '✓' : '✗');
+        
+      } catch (error) { 
+        console.error('❌ Erro Purchase Pixel:', error); 
+      }
+      
+      // 2. Envia Purchase via Conversions API (Server-Side)
+      fetch('/.netlify/functions/facebook-conversion', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event_name: 'Purchase',
+          event_id: eventId,
+          fbp: facebookIds.fbp,
+          fbc: facebookIds.fbc,
+          user_agent: navigator.userAgent,
+          event_source_url: window.location.href,
+          custom_data: {
+            value: parseFloat(value),
+            currency: 'BRL',
+            content_name: produto.nome,
+            content_category: campaign
+          }
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          console.log('✅ Purchase Server-Side enviado!');
+          console.log('  - Facebook Response:', data.facebook_response);
+        } else {
+          console.error('❌ Erro Server-Side:', data.error);
+        }
+      })
+      .catch(err => {
+        console.error('❌ Erro ao chamar Conversions API:', err);
+      });
+    }
+    
+    // ========== INICIALIZAÇÃO ==========
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      
+      // Pega valor
+      const value = params.get('value') || '17.90';
+      document.getElementById('valueDisplay').textContent = formatCurrency(value);
+      
+      // Envia Purchase IMEDIATAMENTE (quando a página carrega)
+      sendPurchaseEvent(value);
+      
+      // Configura botão
+      const ctaButton = document.getElementById('ctaButton');
+      ctaButton.href = GRUPO_VIP_URL;
+      
+      // Evento de clique no botão (para analytics)
+      ctaButton.addEventListener('click', function(e) {
+        console.log('👆 Usuário clicou no botão do Grupo VIP');
+        console.log('🚀 Redirecionando para:', GRUPO_VIP_URL);
+        
+        // O link abre normalmente (não precisa fazer nada)
+      });
+    });
+  </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=Pixel facebook aqui&ev=Purchase&cd[value]=17.90&cd[currency]=BRL&noscript=1"/>
+    <p>Por favor, habilite o JavaScript para continuar.</p>
+    <a href="https://t.me/">Clique aqui para acessar o grupo VIP</a>
+  </noscript>
+</body>
+</html>

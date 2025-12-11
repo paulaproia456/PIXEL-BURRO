@@ -1,0 +1,28 @@
+# Configuração do Netlify
+
+[build]
+  publish = "."
+  command = "echo 'No build needed'"
+
+# Redireciona URLs sem extensão
+[[redirects]]
+  from = "/presell"
+  to = "/presell.html"
+  status = 200
+
+[[redirects]]
+  from = "/obrigado"
+  to = "/obrigado.html"
+  status = 200
+
+# Headers de segurança
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer-when-downgrade"
+
+
+
+

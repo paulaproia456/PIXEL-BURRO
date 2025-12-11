@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acesso Exclusivo VIP</title>
+
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
+    n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'pixel facebook aqui');
+    fbq('track', 'PageView');
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(180deg, #ff4da6 0%, #6a0dad 100%);
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      text-align: center;
+      max-width: 450px;
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      margin: 0 auto 1.5rem auto;
+      overflow: hidden;
+      border: 4px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .titulo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .subtitulo {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      line-height: 1.5;
+    }
+    .cta-button {
+      background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+      color: #1a1a1a;
+      border: none;
+      padding: 18px 40px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(255,215,0,0.4);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255,215,0,0.6);
+    }
+    .cta-button:active {
+      transform: translateY(-1px);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,215,0,0.2);
+      color: #FFD700;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      border: 1px solid rgba(255,215,0,0.3);
+    }
+    .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Animação de entrada */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .container > * {
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+    .circle { animation-delay: 0.1s; }
+    .icon { animation-delay: 0.2s; }
+    .titulo { animation-delay: 0.3s; }
+    .subtitulo { animation-delay: 0.4s; }
+    .cta-button { animation-delay: 0.5s; }
+    .badge { animation-delay: 0.6s; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="circle">
+      <img src="https://i.postimg.cc/RhGMvg71/image.jpg" alt="Foto" id="fotoCirculo">
+    </div>
+    
+    <div class="icon">🔥</div>
+    
+    <h1 class="titulo" id="titulo">Acesso Exclusivo VIP</h1>
+    
+    <p class="subtitulo" id="subtitulo">
+      Clique no botão abaixo para ter acesso ao conteúdo exclusivo no Telegram
+    </p>
+    
+    <a href="#" class="cta-button" id="ctaButton">
+      📱 Acessar Telegram Agora
+    </a>
+    
+    <div class="badge">✨ Conteúdo Liberado</div>
+  </div>
+
+  <!-- Config ANTES do script principal -->
+  <script src="./config.js"></script>
+
+  <script>
+    // ========== CAPTURA FBC/FBP ==========
+    function capturarFBC() {
+      const params = new URLSearchParams(window.location.search);
+      const fbclid = params.get('fbclid');
+      
+      if (fbclid) {
+        const fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+        document.cookie = `_fbc=${fbc}; path=/; max-age=7776000; SameSite=Lax`;
+        localStorage.setItem('_fbc', fbc);
+        console.log('✅ FBC capturado:', fbc);
+        return fbc;
+      } else {
+        console.warn('⚠️ fbclid não encontrado na URL');
+        return null;
+      }
+    }
+    
+    function capturarFBP() {
+      let fbp = document.cookie.split(';').find(c => c.trim().startsWith('_fbp='));
+      if (!fbp) {
+        fbp = 'fb.1.' + Date.now() + '.' + Math.random().toString(36).substr(2, 9);
+        document.cookie = `_fbp=${fbp}; path=/; max-age=7776000; SameSite=Lax`;
+        localStorage.setItem('_fbp', fbp);
+        console.log('✅ FBP criado:', fbp);
+      } else {
+        fbp = fbp.split('=')[1];
+        localStorage.setItem('_fbp', fbp);
+        console.log('✅ FBP encontrado:', fbp);
+      }
+      return fbp;
+    }
+    
+    // Executa captura
+    const fbc = capturarFBC();
+    const fbp = capturarFBP();
+    
+    // ========== PEGA PRODUTO ==========
+    const produto = getProduto();
+    
+    console.log('🎯 Produto:', produto.nome);
+    console.log('🤖 Bot URL:', produto.bot_url);
+    console.log('📊 FBC:', fbc ? '✓' : '✗');
+    console.log('📊 FBP:', fbp ? '✓' : '✓');
+    
+    // ========== PERSONALIZA ==========
+    document.addEventListener('DOMContentLoaded', function() {
+      // Muda cores
+      document.body.style.background = 
+        `linear-gradient(180deg, ${produto.cor_primaria} 0%, ${produto.cor_secundaria} 100%)`;
+      
+      // Muda foto
+      document.getElementById('fotoCirculo').src = produto.foto;
+      
+      // Muda textos
+      document.getElementById('titulo').textContent = 
+        `Acesso Exclusivo - ${produto.nome}`;
+      
+      document.getElementById('subtitulo').textContent = 
+        `Clique no botão abaixo para ter acesso ao conteúdo exclusivo da ${produto.nome} no Telegram`;
+      
+      // Configura botão
+      const ctaButton = document.getElementById('ctaButton');
+      ctaButton.href = produto.bot_url;
+      
+      // Evento de clique (opcional, para tracking)
+      ctaButton.addEventListener('click', function(e) {
+        console.log('👆 Usuário clicou no botão CTA');
+        
+        // Envia evento Lead pro Facebook
+        try {
+          fbq('track', 'Lead', {
+            content_name: produto.nome,
+            content_category: new URLSearchParams(window.location.search).get('utm_campaign') || 'bia'
+          });
+          console.log('✅ Evento Lead enviado ao Facebook');
+        } catch (error) {
+          console.error('❌ Erro ao enviar Lead:', error);
+        }
+        
+        // Deixa o link abrir normalmente
+      });
+    });
+  </script>
+
+  <noscript>
+    <p>Por favor, habilite o JavaScript para continuar.</p>
+    <a href="https://t.me/?start=">Clique aqui para acessar</a>
+  </noscript>
+</body>
+</html>

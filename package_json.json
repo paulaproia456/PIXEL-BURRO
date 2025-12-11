@@ -1,0 +1,16 @@
+{
+  "name": "seu-projeto",
+  "version": "1.0.0",
+  "description": "Página de conversão com Facebook CAPI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests\" && exit 0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
