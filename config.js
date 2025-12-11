@@ -7,7 +7,7 @@ const PRODUTOS = {
     nome: 'Mirella',
     bot_url: 'https://t.me/Mirella_bot?start=pixrmirella',
     grupo_vip: 'https://t.me/+LINK_GRUPO_MIRELLA',
-    foto: 'https://i.postimg.cc/FOTO_MIRELLA.jpg',
+    foto: './imagens/',
     cor_primaria: '#ff6b9d',
     cor_secundaria: '#c44569'
   },
